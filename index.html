@@ -1,268 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kgosi Ruri Molebatsi | Portfolio</title>
-    <style>
-        :root {
-            --bg-color: #f4f7f6;
-            --text-color: #333;
-            --primary-color: #2c3e50;
-            --secondary-color: #18bc9c;
-            --card-bg: #ffffff;
-            --border-radius: 8px;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kgosi Ruri Molebatsi — Quantitative Researcher</title>
+<meta name="description" content="MSc Data Science candidate at the University of Kent. Research in Bayesian statistical inference, expert judgement elicitation, uncertainty quantification and actuarial risk.">
+<meta property="og:title" content="Kgosi Ruri Molebatsi">
+<meta property="og:description" content="Quantitative Researcher & Actuarial Scientist">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#050505;--fg:#f2f0eb;--fg2:#999890;--fg3:#4a4840;--border:#222;--accent:#f2f0eb}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:'IBM Plex Mono',monospace;overflow-x:hidden}
+::selection{background:var(--fg);color:var(--bg)}
 
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-        }
+.grid-overlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(242,240,235,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(242,240,235,0.025) 1px,transparent 1px);
+  background-size:60px 60px
+}
 
-        .header-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;border-bottom:1px solid var(--border);background:rgba(5,5,5,0.95);backdrop-filter:blur(8px)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;height:52px}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;letter-spacing:0.15em;text-transform:uppercase;color:var(--fg)}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--fg2);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--fg)}
+.nav-toggle{display:none;background:none;border:none;color:var(--fg2);cursor:pointer;font-size:1.2rem}
 
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--secondary-color);
-            margin-bottom: 1rem;
-        }
+/* TICKER */
+.ticker{border-bottom:1px solid var(--border);background:var(--bg);overflow:hidden;height:28px;display:flex;align-items:center;margin-top:52px}
+.ticker-inner{display:flex;animation:ticker 50s linear infinite;white-space:nowrap}
+.ticker-item{font-size:0.6rem;letter-spacing:0.18em;color:var(--fg3);padding:0 2rem;border-right:1px solid var(--border)}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-        h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
+/* SECTIONS */
+section{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 2rem}
 
-        .contact-info {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-        }
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:6rem;border-bottom:1px solid var(--border);position:relative;z-index:1;max-width:none;margin:0}
+.hero-inner{max-width:1200px;margin:0 auto;padding:0 2rem;width:100%}
+.hero-label{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--fg3);margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
+.hero-label::after{content:'';flex:1;max-width:80px;height:1px;background:var(--fg3)}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,9vw,9rem);font-weight:300;line-height:0.9;letter-spacing:-0.02em;margin-bottom:2.5rem}
+.hero-name em{font-style:italic;color:var(--fg2)}
+.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem}
+.hero-desc{max-width:480px;font-size:0.75rem;line-height:1.9;color:var(--fg2);letter-spacing:0.05em}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border)}
+.stat-box{padding:1rem 1.5rem;border-right:1px solid var(--border);text-align:right}
+.stat-box:last-child{border-right:none}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;line-height:1;display:block}
+.stat-lbl{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--fg3);display:block;margin-top:0.3rem}
+.math-float{position:absolute;font-size:clamp(4rem,8vw,8rem);color:rgba(242,240,235,0.025);font-family:'Cormorant Garamond',serif;font-style:italic;pointer-events:none;font-weight:300}
 
-        .contact-info a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            margin: 0 10px;
-        }
+/* SECTIONS */
+.section-wrapper{border-bottom:1px solid var(--border)}
+.section-header{display:flex;align-items:center;border-bottom:1px solid var(--border)}
+.sec-num{font-size:0.6rem;letter-spacing:0.2em;color:var(--fg3);padding:1rem 1.5rem;border-right:1px solid var(--border);min-width:80px}
+.sec-title{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--fg2);padding:1rem 1.5rem}
+.sec-body{padding:4rem 0}
 
-        main {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border)}
+.about-left{padding:3rem;border-right:1px solid var(--border)}
+.about-right{padding:0}
+.about-text{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:300;line-height:1.7;color:var(--fg)}
+.about-text em{font-style:italic;color:var(--fg2)}
+.skill-block{padding:2rem;border-bottom:1px solid var(--border)}
+.skill-block:last-child{border-bottom:none}
+.skill-cat{font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--fg3);margin-bottom:0.5rem}
+.skill-items{font-size:0.7rem;letter-spacing:0.04em;color:var(--fg2);line-height:1.7}
 
-        section {
-            background-color: var(--card-bg);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
+/* RESEARCH */
+.research-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--border)}
+.r-card{padding:2.5rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:background 0.3s;cursor:default}
+.r-card:hover{background:rgba(242,240,235,0.03)}
+.r-card:nth-child(2n){border-right:none}
+.r-card:nth-child(3),.r-card:nth-child(4){border-bottom:none}
+.r-tag{font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--fg3);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem}
+.r-tag::before{content:'';width:20px;height:1px;background:var(--fg3)}
+.r-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;line-height:1.3;margin-bottom:1rem;color:var(--fg)}
+.r-body{font-size:0.68rem;line-height:1.85;color:var(--fg2);letter-spacing:0.03em}
+.r-symbol{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--fg3);float:right;line-height:1;margin:0 0 0.5rem 1rem;font-style:italic}
 
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
-            margin-top: 0;
-        }
+/* PROJECTS */
+.proj-list{border:1px solid var(--border)}
+.proj-row{display:grid;grid-template-columns:60px 1fr auto;align-items:center;border-bottom:1px solid var(--border);transition:background 0.2s;text-decoration:none;color:inherit}
+.proj-row:last-child{border-bottom:none}
+.proj-row:hover{background:rgba(242,240,235,0.035)}
+.proj-idx{font-size:0.6rem;color:var(--fg3);padding:1.5rem;border-right:1px solid var(--border);text-align:center}
+.proj-info{padding:1.5rem 2rem}
+.proj-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;margin-bottom:0.35rem}
+.proj-desc{font-size:0.63rem;color:var(--fg2);letter-spacing:0.04em;line-height:1.65}
+.proj-lang{font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--fg3);padding:1.5rem;text-align:right;white-space:nowrap}
 
-        h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.2rem;
-        }
+/* COLLABORATE */
+.collab-box{border:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:0}
+.collab-left{padding:3rem;border-right:1px solid var(--border)}
+.collab-heading{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;line-height:1.2;margin-bottom:1.5rem}
+.collab-heading em{font-style:italic;color:var(--fg2)}
+.collab-text{font-size:0.72rem;line-height:1.9;color:var(--fg2);letter-spacing:0.03em;margin-bottom:1.5rem}
+.collab-types{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border);margin-top:2rem}
+.collab-type{background:var(--bg);padding:1rem 1.25rem}
+.collab-type-label{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--fg3);margin-bottom:0.3rem}
+.collab-type-text{font-size:0.7rem;color:var(--fg2)}
+.collab-right{padding:3rem;display:flex;flex-direction:column;justify-content:center}
+.status-badge{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--fg3);border:1px solid var(--border);padding:0.5rem 1rem;margin-bottom:2rem}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--fg2);animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.25}}
+.contrib-list{display:flex;flex-direction:column;gap:0.6rem}
+.contrib-item{font-size:0.7rem;color:var(--fg2);padding:0.75rem 1rem;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;transition:background 0.2s}
+.contrib-item:hover{background:rgba(242,240,235,0.03)}
+.contrib-arrow{color:var(--fg3);font-size:0.85rem}
 
-        .meta-info {
-            font-size: 0.9rem;
-            color: #666;
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
+/* CONTACT */
+.contact-split{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border)}
+.contact-left{padding:3rem;border-right:1px solid var(--border)}
+.contact-right{padding:3rem}
+.contact-heading{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;line-height:1.4;margin-bottom:1.5rem}
+.contact-text{font-size:0.68rem;color:var(--fg2);line-height:1.85;letter-spacing:0.03em}
+.contact-links{display:flex;flex-direction:column;gap:0;border:1px solid var(--border)}
+.contact-link{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.25rem;border-bottom:1px solid var(--border);text-decoration:none;color:var(--fg2);font-size:0.65rem;letter-spacing:0.08em;transition:all 0.2s}
+.contact-link:last-child{border-bottom:none}
+.contact-link:hover{background:rgba(242,240,235,0.04);color:var(--fg)}
 
-        ul {
-            padding-left: 1.5rem;
-        }
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:0;position:relative;z-index:1}
+.footer-inner{max-width:1200px;margin:0 auto;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:0.6rem;color:var(--fg3);letter-spacing:0.12em}
+.footer-mono{font-size:0.6rem;color:var(--fg3);letter-spacing:0.08em}
 
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: var(--primary-color);
-            color: white;
-            margin-top: 2rem;
-        }
-    </style>
+/* MOBILE */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .nav-toggle{display:block}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:52px;left:0;width:100%;background:var(--bg);border-bottom:1px solid var(--border);padding:1.5rem 2rem;gap:1.5rem;z-index:99}
+  .hero-bottom{flex-direction:column;align-items:flex-start}
+  .hero-stats{grid-template-columns:repeat(3,1fr);width:100%}
+  .about-grid,.collab-box,.contact-split{grid-template-columns:1fr}
+  .about-left,.collab-left,.contact-left{border-right:none;border-bottom:1px solid var(--border)}
+  .research-grid{grid-template-columns:1fr}
+  .r-card{border-right:none}
+  .r-card:nth-child(3){border-bottom:1px solid var(--border)}
+  .proj-row{grid-template-columns:50px 1fr}
+  .proj-lang{display:none}
+  .footer-inner{flex-direction:column;gap:0.5rem;text-align:center}
+}
+</style>
 </head>
 <body>
 
-    <header>
-        <div class="header-content">
-            <img src="1771253573377.jpeg" alt="Kgosi Ruri Molebatsi" class="profile-img">
-            <h1>Kgosi Ruri Molebatsi [cite: 2]</h1>
-            <p>Data Science & Quantitative Finance Professional</p>
-            <div class="contact-info">
-                <span>+44 07534 246777 [cite: 3]</span> | 
-                <a href="mailto:krmolebatsi@icloud.com">krmolebatsi@icloud.com [cite: 3]</a> | 
-                <a href="https://linkedin.com/in/kgosirm" target="_blank">LinkedIn [cite: 3]</a> | 
-                <a href="https://github.com/kgosiruri" target="_blank">GitHub [cite: 3]</a>
-            </div>
+<div class="grid-overlay"></div>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">KRM</span>
+    <div class="nav-links" id="navlinks">
+      <a href="#about" onclick="closeNav()">Profile</a>
+      <a href="#research" onclick="closeNav()">Research</a>
+      <a href="#projects" onclick="closeNav()">Projects</a>
+      <a href="#collaborate" onclick="closeNav()">Collaborate</a>
+      <a href="#contact" onclick="closeNav()">Contact</a>
+    </div>
+    <button class="nav-toggle" id="navtoggle" aria-label="Toggle menu" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<div class="ticker">
+  <div class="ticker-inner" aria-hidden="true">
+    <span class="ticker-item">MSc Data Science — University of Kent</span>
+    <span class="ticker-item">BSc Actuarial Science — Heriot-Watt University</span>
+    <span class="ticker-item">Expert Judgement Elicitation</span>
+    <span class="ticker-item">Bayesian Machine Learning</span>
+    <span class="ticker-item">Uncertainty Quantification</span>
+    <span class="ticker-item">Vine Copulas &amp; Extreme Value Theory</span>
+    <span class="ticker-item">IFoA Exemptions: CB1, CB2</span>
+    <span class="ticker-item">BART — Conditional Copula Modelling</span>
+    <span class="ticker-item">Python · R · Julia · SAS · SQL</span>
+    <span class="ticker-item">Solvency II · Internal Capital Models</span>
+    <span class="ticker-item">MSc Data Science — University of Kent</span>
+    <span class="ticker-item">BSc Actuarial Science — Heriot-Watt University</span>
+    <span class="ticker-item">Expert Judgement Elicitation</span>
+    <span class="ticker-item">Bayesian Machine Learning</span>
+    <span class="ticker-item">Uncertainty Quantification</span>
+    <span class="ticker-item">Vine Copulas &amp; Extreme Value Theory</span>
+    <span class="ticker-item">IFoA Exemptions: CB1, CB2</span>
+    <span class="ticker-item">BART — Conditional Copula Modelling</span>
+    <span class="ticker-item">Python · R · Julia · SAS · SQL</span>
+    <span class="ticker-item">Solvency II · Internal Capital Models</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;pointer-events:none;z-index:0" aria-hidden="true">
+    <span class="math-float" style="top:15%;left:5%">∫</span>
+    <span class="math-float" style="top:28%;right:8%;font-size:clamp(2rem,5vw,5rem)">Σ</span>
+    <span class="math-float" style="bottom:22%;left:18%;font-size:clamp(3rem,6vw,6rem)">σ</span>
+    <span class="math-float" style="top:52%;right:22%;font-size:clamp(3rem,7vw,7rem)">∂</span>
+    <span class="math-float" style="bottom:32%;right:5%;font-size:clamp(2rem,4vw,4rem)">λ</span>
+    <span class="math-float" style="top:65%;left:42%;font-size:clamp(2rem,5vw,5rem)">μ</span>
+    <span class="math-float" style="top:38%;left:30%;font-size:clamp(1.5rem,3vw,3rem)">α</span>
+  </div>
+  <div class="hero-inner" style="position:relative;z-index:1">
+    <div class="hero-label">Quantitative Researcher &amp; Actuarial Scientist</div>
+    <h1 class="hero-name">
+      Kgosi<br>Ruri<br><em>Molebatsi</em>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        MSc Data Science candidate at the University of Kent. Research interests span Bayesian statistical inference, expert judgement elicitation, uncertainty quantification and their application to actuarial and financial risk frameworks.
+      </p>
+      <div class="hero-stats" aria-label="Summary statistics">
+        <div class="stat-box">
+          <span class="stat-num">4+</span>
+          <span class="stat-lbl">Research Projects</span>
         </div>
-    </header>
+        <div class="stat-box">
+          <span class="stat-num">3</span>
+          <span class="stat-lbl">Industry Internships</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">↑</span>
+          <span class="stat-lbl">Distinction Track</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>I am a highly analytical professional with a strong foundation in actuarial science and data science. My expertise lies in predictive modelling, statistical inference, and building scalable data systems[cite: 8]. With practical experience across risk management, strategic pricing, and quantitative research, I am passionate about applying advanced statistical techniques to complex financial and geopolitical challenges.</p>
-        </section>
+<!-- ABOUT -->
+<div class="section-wrapper" id="about">
+  <section>
+    <div class="section-header">
+      <span class="sec-num">01</span>
+      <span class="sec-title">Profile</span>
+    </div>
+    <div class="sec-body">
+      <div class="about-grid">
+        <div class="about-left">
+          <p class="about-text">
+            A quantitative researcher bridging the gap between <em>rigorous Bayesian methodology</em> and applied actuarial science. My work is motivated by a central question: how do we make principled decisions under genuine uncertainty, when data is sparse and expert knowledge must be formalised?
+            <br><br>
+            From Internal Model validation at Lloyd's syndicates to pricing analytics at Ageas UK, I have observed first-hand where classical methods break down — and where Bayesian frameworks open new possibilities.
+            <br><br>
+            Currently pursuing a PhD candidacy discussion with Prof. Kevin Wilson at the University of Kent, with research directions spanning expert elicitation, vine copulas, BART models and Bayesian decision support.
+          </p>
+        </div>
+        <div class="about-right">
+          <div class="skill-block">
+            <div class="skill-cat">Programming Languages</div>
+            <div class="skill-items">Python &nbsp;·&nbsp; R &nbsp;·&nbsp; Julia &nbsp;·&nbsp; SQL &nbsp;·&nbsp; SAS &nbsp;·&nbsp; LaTeX</div>
+          </div>
+          <div class="skill-block">
+            <div class="skill-cat">Tools &amp; Platforms</div>
+            <div class="skill-items">Power BI &nbsp;·&nbsp; WTW Radar &nbsp;·&nbsp; Git &nbsp;·&nbsp; Excel/VBA &nbsp;·&nbsp; Flux.jl &nbsp;·&nbsp; SPSS</div>
+          </div>
+          <div class="skill-block">
+            <div class="skill-cat">Methodologies</div>
+            <div class="skill-items">Monte Carlo Simulation &nbsp;·&nbsp; PCA &nbsp;·&nbsp; Vine Copulas &nbsp;·&nbsp; Extreme Value Theory &nbsp;·&nbsp; BART &nbsp;·&nbsp; GLM &nbsp;·&nbsp; GBM &nbsp;·&nbsp; VaR / ES</div>
+          </div>
+          <div class="skill-block">
+            <div class="skill-cat">Education</div>
+            <div class="skill-items">MSc Data Science — University of Kent (2025–2026)<br>BSc Hons Actuarial Science — Heriot-Watt University (2021–2025)</div>
+          </div>
+          <div class="skill-block">
+            <div class="skill-cat">Professional Qualifications</div>
+            <div class="skill-items">IFoA Exemptions: CB1 (Business Finance), CB2 (Economics)<br>Solvency II · Lloyds Market Experience</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
-        <section id="education">
-            <h2>Education [cite: 1]</h2>
-            
-            <div class="entry">
-                <h3>University of Kent [cite: 4]</h3>
-                <div class="meta-info">MSc Data Science | Canterbury, United Kingdom | Sept 2025 - Sept 2026 [cite: 5, 12]</div>
-                <ul>
-                    <li>Current Grade: Distinction [cite: 6]</li>
-                    <li>Relevant Modules: Machine Learning, Deep Learning, Bayesian Machine Learning. [cite: 7]</li>
-                    <li>Focus on predictive modelling, statistical inference and scalable data systems. [cite: 8]</li>
-                </ul>
+<!-- RESEARCH -->
+<div class="section-wrapper" id="research">
+  <section>
+    <div class="section-header">
+      <span class="sec-num">02</span>
+      <span class="sec-title">Research Interests</span>
+    </div>
+    <div class="sec-body">
+      <div class="research-grid">
+        <div class="r-card">
+          <div class="r-tag">01 — Expert Judgement</div>
+          <span class="r-symbol" aria-hidden="true">ε</span>
+          <h2 class="r-title">Expert Judgement Elicitation &amp; Aggregation</h2>
+          <p class="r-body">Formalising subjective expert knowledge when empirical data is sparse. Explores probabilistic Delphi methods, structured expert dependence modelling and translation into Internal Capital Models for emerging systemic and operational risks. Motivated by direct exposure to expert-judgement reliance during Internal Model validation at Faraday Underwriting.</p>
+        </div>
+        <div class="r-card">
+          <div class="r-tag">02 — Dependency Modelling</div>
+          <span class="r-symbol" aria-hidden="true">C</span>
+          <h2 class="r-title">Uncertainty Quantification &amp; Vine Copulas</h2>
+          <p class="r-body">Capturing asymmetric, complex dependency structures in multivariate risk environments. Connects vine copula prior specification with minimum information methods and Extreme Value Theory to improve joint extreme event modelling in catastrophe and systemic risk frameworks.</p>
+        </div>
+        <div class="r-card">
+          <div class="r-tag">03 — Decision Theory</div>
+          <span class="r-symbol" aria-hidden="true">π</span>
+          <h2 class="r-title">Bayesian Risk Modelling &amp; Decision Support</h2>
+          <p class="r-body">Developing robust probabilistic models for high-stakes decision-making under uncertainty. Investigates Bayes linear graphical models for optimal test strategy design, multi-attribute utility for reliability task allocation, and the translation of these frameworks into regulatory, pricing and risk-transfer applications.</p>
+        </div>
+        <div class="r-card">
+          <div class="r-tag">04 — Machine Learning</div>
+          <span class="r-symbol" aria-hidden="true">β</span>
+          <h2 class="r-title">Bayesian Additive Regression Trees</h2>
+          <p class="r-body">Bridging machine learning interpretability with rigorous Bayesian inference. Explores loss-based priors for BART tree topologies and integration with conditional copulas to model dynamic, state-dependent tail risks — with direct application to insurance pricing, reserving and systemic risk transfer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PROJECTS -->
+<div class="section-wrapper" id="projects">
+  <section>
+    <div class="section-header">
+      <span class="sec-num">03</span>
+      <span class="sec-title">Projects &amp; Work</span>
+    </div>
+    <div class="sec-body">
+      <div class="proj-list">
+        <a class="proj-row" href="https://github.com/kgosiruri" target="_blank" rel="noopener noreferrer" aria-label="Systemic Risk Transfer project on GitHub">
+          <span class="proj-idx">01</span>
+          <div class="proj-info">
+            <div class="proj-name">Systemic Risk Transfer via Insurance-Linked Structures</div>
+            <div class="proj-desc">Quantitative framework for transferring macro-financial and geopolitical risks using ILS structures — copulas, Monte Carlo simulation, PCA-based stress indices and Extreme Value Theory for tail-risk modelling.</div>
+          </div>
+          <span class="proj-lang">Python · EVT · Copulas →</span>
+        </a>
+        <a class="proj-row" href="https://github.com/kgosiruri" target="_blank" rel="noopener noreferrer">
+          <span class="proj-idx">02</span>
+          <div class="proj-info">
+            <div class="proj-name">Geopolitical Risk Transmission &amp; Bond Pricing</div>
+            <div class="proj-desc">Research into GPR index transmission into macroeconomic variables, credit spreads and bond pricing using stress transmission frameworks and reduced-form credit risk models.</div>
+          </div>
+          <span class="proj-lang">R · Credit Risk →</span>
+        </a>
+        <a class="proj-row" href="https://github.com/kgosiruri" target="_blank" rel="noopener noreferrer">
+          <span class="proj-idx">03</span>
+          <div class="proj-info">
+            <div class="proj-name">Pricing Models &amp; Quantitative Finance in Julia</div>
+            <div class="proj-desc">Reimplementation of Ronald Richman's ASTIN pricing framework in Julia — GLM, Neural Network and Combined Additive Neural Network (CANN) architectures for actuarial pricing using Flux.jl.</div>
+          </div>
+          <span class="proj-lang">Julia · Flux.jl →</span>
+        </a>
+        <a class="proj-row" href="https://github.com/kgosiruri" target="_blank" rel="noopener noreferrer">
+          <span class="proj-idx">04</span>
+          <div class="proj-info">
+            <div class="proj-name">UK Actuarial Climate Index (UK-ACI)</div>
+            <div class="proj-desc">Constructed a UK Actuarial Climate Index using NetCDF climate datasets, PCA, weighted/unweighted anomaly indices and 5-year moving averages to quantify climate-related risk trends for actuarial assessment.</div>
+          </div>
+          <span class="proj-lang">Python · PCA · NetCDF →</span>
+        </a>
+        <a class="proj-row" href="https://github.com/kgosiruri" target="_blank" rel="noopener noreferrer">
+          <span class="proj-idx">05</span>
+          <div class="proj-info">
+            <div class="proj-name">From Basel to Banks — Quantitative Regulation Toolkit</div>
+            <div class="proj-desc">Workshop series translating Basel III/IV regulatory frameworks into reproducible Python simulations covering credit, market, liquidity and operational risk with VaR, Expected Shortfall and capital adequacy modelling.</div>
+          </div>
+          <span class="proj-lang">Python · Basel III/IV →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- COLLABORATE -->
+<div class="section-wrapper" id="collaborate">
+  <section>
+    <div class="section-header">
+      <span class="sec-num">04</span>
+      <span class="sec-title">Open to Collaboration</span>
+    </div>
+    <div class="sec-body">
+      <div class="collab-box">
+        <div class="collab-left">
+          <div class="status-badge">
+            <span class="status-dot" aria-hidden="true"></span>
+            Available for projects
+          </div>
+          <h2 class="collab-heading">Let's work on<br>something <em>interesting</em></h2>
+          <p class="collab-text">
+            Beyond formal research, I am actively open to mini projects, consultancy, collaborative data science work, and any quantitatively interesting problem. If you have something that requires rigorous statistical thinking, actuarial intuition, or computational modelling — I would like to hear about it.
+          </p>
+          <p class="collab-text">
+            This includes student collaborations, industry problems, competition datasets, paper replication studies, or simply an interesting idea that needs someone who can take it from concept to code.
+          </p>
+          <div class="collab-types">
+            <div class="collab-type">
+              <div class="collab-type-label">Data Science</div>
+              <div class="collab-type-text">Modelling, ML, analysis</div>
             </div>
-
-            <div class="entry">
-                <h3>Heriot-Watt University [cite: 9]</h3>
-                <div class="meta-info">BSc (Hons) Actuarial Science | Edinburgh, United Kingdom | Sept 2021 - May 2025 [cite: 10, 13, 14]</div>
-                <ul>
-                    <li>Relevant Modules: Time Series, Stochastic Processes, Risk Theory. [cite: 11]</li>
-                    <li>Built a UK Actuarial Climate Index using PCA methods to quantify regional climate risk exposure. [cite: 15]</li>
-                    <li>IFOA Exemptions Achieved: CB1, CB2. [cite: 16]</li>
-                </ul>
+            <div class="collab-type">
+              <div class="collab-type-label">Actuarial</div>
+              <div class="collab-type-text">Pricing, reserving, risk</div>
             </div>
-        </section>
-
-        <section id="experience">
-            <h2>Professional Experience [cite: 43]</h2>
-            
-            <div class="entry">
-                <h3>University of Kent - IT Support Assistant [cite: 44, 45]</h3>
-                <div class="meta-info">Canterbury, United Kingdom | Feb 2026 - Present [cite: 47]</div>
-                <ul>
-                    <li>Provide first-line technical support across hardware, software and network systems. [cite: 46]</li>
-                    <li>Diagnose technical incidents, document root causes and maintain resolution workflows within service standards. [cite: 48]</li>
-                    <li>Strengthened practical experience in systems troubleshooting, operational reliability and technical communication. [cite: 49]</li>
-                </ul>
+            <div class="collab-type">
+              <div class="collab-type-label">Research</div>
+              <div class="collab-type-text">Papers, replication, lit reviews</div>
             </div>
-
-            <div class="entry">
-                <h3>Ageas UK - Strategic Market Pricing Intern [cite: 50]</h3>
-                <div class="meta-info">Eastleigh, United Kingdom | Jun 2025 - Sep 2025 [cite: 51]</div>
-                <ul>
-                    <li>Developed Power BI dashboards analysing daily price-comparison website data to monitor competitor pricing, exposure shifts and underwriting signals. [cite: 52]</li>
-                    <li>Built and optimised automated SAS data pipelines enabling daily refresh of pricing and exposure analytics. [cite: 53]</li>
-                    <li>Conducted feature engineering and rating factor testing using Gradient Boosting Models within WTW Radar. [cite: 54]</li>
-                    <li>Delivered pricing and exposure insights to underwriting and portfolio management stakeholders. [cite: 55]</li>
-                </ul>
+            <div class="collab-type">
+              <div class="collab-type-label">Quant Finance</div>
+              <div class="collab-type-text">Derivatives, credit, ILS</div>
             </div>
-
-            <div class="entry">
-                <h3>Faraday Underwriting Limited - Risk Management Intern [cite: 56, 57]</h3>
-                <div class="meta-info">London, United Kingdom | May 2024 - Aug 2024 [cite: 58]</div>
-                <ul>
-                    <li>Collaborated with syndicate risk specialists to review and recalibrate Operational Risk parameters within the Internal Model framework, strengthening robustness of capital forecasts. [cite: 59]</li>
-                    <li>Prepared and presented parameter change analysis to the Internal Model Validation Committee, providing independent challenge on modelling assumptions and methodological consistency. [cite: 60]</li>
-                    <li>Re-architected the team's data management framework to improve auditability, traceability and model governance. [cite: 62]</li>
-                </ul>
+          </div>
+        </div>
+        <div class="collab-right">
+          <div>
+            <div class="skill-cat" style="margin-bottom:1rem">Areas I can contribute to</div>
+            <div class="contrib-list">
+              <div class="contrib-item">
+                <span>Bayesian statistical modelling &amp; inference</span>
+                <span class="contrib-arrow">→</span>
+              </div>
+              <div class="contrib-item">
+                <span>Insurance &amp; financial risk quantification</span>
+                <span class="contrib-arrow">→</span>
+              </div>
+              <div class="contrib-item">
+                <span>Machine learning for pricing and reserving</span>
+                <span class="contrib-arrow">→</span>
+              </div>
+              <div class="contrib-item">
+                <span>Geopolitical &amp; systemic risk research</span>
+                <span class="contrib-arrow">→</span>
+              </div>
+              <div class="contrib-item">
+                <span>Data pipelines &amp; reproducible research</span>
+                <span class="contrib-arrow">→</span>
+              </div>
+              <div class="contrib-item">
+                <span>Workshop facilitation &amp; technical writing</span>
+                <span class="contrib-arrow">→</span>
+              </div>
+              <div class="contrib-item">
+                <span>Regulatory framework analysis (Basel / Solvency II)</span>
+                <span class="contrib-arrow">→</span>
+              </div>
+              <div class="contrib-item">
+                <span>Climate risk &amp; ESG quantification</span>
+                <span class="contrib-arrow">→</span>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
-            <div class="entry">
-                <h3>Faraday Underwriting Limited - Actuarial Intern [cite: 65, 66]</h3>
-                <div class="meta-info">London, United Kingdom | Jun 2023 - Sep 2023 [cite: 67]</div>
-                <ul>
-                    <li>Enhanced and maintained R scripts supporting capital model troubleshooting, scenario analysis and validation testing. [cite: 68]</li>
-                    <li>Supported 60+ validation tests spanning Reserve Risk, Dependency Modelling, Catastrophe Risk, Non-Catastrophe Risk and Operational Risk modules. [cite: 69]</li>
-                    <li>Assisted in Lloyd's reserve benchmarking and Solvency II Technical Provisions submissions. [cite: 71]</li>
-                </ul>
-            </div>
-        </section>
+<!-- CONTACT -->
+<div class="section-wrapper" id="contact">
+  <section>
+    <div class="section-header">
+      <span class="sec-num">05</span>
+      <span class="sec-title">Contact</span>
+    </div>
+    <div class="sec-body">
+      <div class="contact-split">
+        <div class="contact-left">
+          <h2 class="contact-heading">Get in touch — whether for PhD discussions, project ideas, or a conversation about quantitative risk.</h2>
+          <p class="contact-text">
+            I am currently based in Canterbury, UK, pursuing my MSc at the University of Kent. I am always open to thoughtful outreach from researchers, practitioners, and fellow students working at the intersection of mathematics, statistics and real-world risk.
+            <br><br>
+            Whether it is a brief question or a longer-term collaboration, feel free to reach out via any of the channels listed.
+          </p>
+        </div>
+        <div class="contact-right">
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:krmolebatsi@icloud.com" aria-label="Send email">
+              <span>krmolebatsi@icloud.com</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a class="contact-link" href="https://linkedin.com/in/kgosirm" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+              <span>linkedin.com/in/kgosirm</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a class="contact-link" href="https://github.com/kgosiruri" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+              <span>github.com/kgosiruri</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a class="contact-link" href="tel:+4407534246777" aria-label="Phone number">
+              <span>+44 07534 246 777</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
-        <section id="projects">
-            <h2>Research Projects [cite: 17]</h2>
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Kgosi Ruri Molebatsi</span>
+    <span class="footer-mono">Canterbury, United Kingdom &nbsp;·&nbsp; University of Kent</span>
+  </div>
+</footer>
 
-            <div class="entry">
-                <h3>Systemic Risk Transfer via Insurance-Linked Structures [cite: 18]</h3>
-                <div class="meta-info">Independent Research Project | 2026-Present [cite: 19, 20]</div>
-                <ul>
-                    <li>Developed a quantitative framework for transferring systemic macro-financial and geopolitical risks using insurance-linked security structures, incorporating copulas, Monte Carlo simulation, PCA-based stress indices and Extreme Value Theory for tail-risk modelling. [cite: 21]</li>
-                </ul>
-            </div>
-
-            <div class="entry">
-                <h3>Geopolitical Risk Transmission and Bond Pricing [cite: 23]</h3>
-                <div class="meta-info">Head of Research, Kent Economics Society | 2026-Present [cite: 24, 25]</div>
-                <ul>
-                    <li>Researched geopolitical risk transmission into macroeconomic variables, bond pricing, credit spreads and regulatory risk metrics using Geopolitical Risk (GPR) indices, stress transmission frameworks and reduced-form credit risk modelling. [cite: 26]</li>
-                </ul>
-            </div>
-
-            <div class="entry">
-                <h3>Pricing Models and Quantitative Finance in Julia [cite: 33]</h3>
-                <div class="meta-info">Independent Quantitative Finance Project | 2025 [cite: 34, 35]</div>
-                <ul>
-                    <li>Reimplemented Ronald Richman's ASTIN pricing framework entirely in Julia, developing GLM, Neural Network and Combined Additive Neural Network (CANN) architectures for actuarial pricing and stochastic modelling applications using Flux.jl. [cite: 36]</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="skills">
-            <h2>Technical Skills [cite: 77]</h2>
-            <div class="skills-container">
-                <span class="skill-tag">Python [cite: 78]</span>
-                <span class="skill-tag">R [cite: 78]</span>
-                <span class="skill-tag">Julia [cite: 78]</span>
-                <span class="skill-tag">SQL [cite: 78]</span>
-                <span class="skill-tag">SAS [cite: 78]</span>
-                <span class="skill-tag">Power BI [cite: 79]</span>
-                <span class="skill-tag">WTW Radar [cite: 79]</span>
-                <span class="skill-tag">Git [cite: 79]</span>
-                <span class="skill-tag">SPSS [cite: 79]</span>
-                <span class="skill-tag">Excel/VBA [cite: 79]</span>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Kgosi Ruri Molebatsi. All rights reserved.</p>
-    </footer>
+<script>
+function toggleNav(){
+  var links=document.getElementById('navlinks');
+  links.classList.toggle('open');
+}
+function closeNav(){
+  document.getElementById('navlinks').classList.remove('open');
+}
+document.addEventListener('click',function(e){
+  var nav=document.getElementById('navlinks');
+  var toggle=document.getElementById('navtoggle');
+  if(nav.classList.contains('open')&&!nav.contains(e.target)&&e.target!==toggle){
+    nav.classList.remove('open');
+  }
+});
+</script>
 
 </body>
 </html>
